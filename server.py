@@ -1,22 +1,8 @@
+#!/usr/bin/python3
 from socket import socket
 from threading import Thread
 import pickle
-
-HOST = '192.168.1.90'
-PORT = 25566
-
-server = socket()
-server.bind((HOST, PORT))
-server.listen(2)
-
-player1, addr1 = server.accept()
-print('Connection from:', str(addr1))
-
-player2, addr2 = server.accept()
-print('Connection from:', str(addr2))
-
-player1.send('1'.encode())
-player2.send('2'.encode())
+import sys
 
 def message(conn1, conn2):
     try:
@@ -26,8 +12,36 @@ def message(conn1, conn2):
     except:
         conn1.close()
 
-t1 = Thread(target=message, args=(player1, player2))
-t2 = Thread(target=message, args=(player2, player1))
 
-t1.start()
-t2.start()
+if __name__ == '__main__':
+
+    HOST = '0.0.0.0' if len(sys.argv) < 2 else sys.argv[1]
+    PORT = 31001     if len(sys.argv) < 3 else int(sys.argv[2])
+
+    server = socket()
+    server.bind((HOST, PORT))
+    server.listen(2)
+
+    print(f"Serving on {HOST}:{PORT}")
+    pool = {}
+
+    while True:
+        player1, addr1 = server.accept()
+        player1.settimeout(600)
+        print('Connection from:', str(addr1))
+        secret = player1.recv(1024).decode()
+        print('Secret:', secret)
+        if secret in pool:
+            print("Found a match")
+            player2 = pool.pop(secret)
+            player1.send('1'.encode())
+            player2.send('2'.encode())
+            t1 = Thread(target=message, args=(player1, player2))
+            t2 = Thread(target=message, args=(player2, player1))
+            t1.start()
+            t2.start()
+        else:
+            print("Added to the pool")
+            pool[secret] = player1
+
+

@@ -1,2 +1,3 @@
-# net-tac-toe
-Cute little game you can play over the net
+# Ultimate tic-tac-toe over the net
+
+TODO
