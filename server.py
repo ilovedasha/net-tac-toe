@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from socket import socket
 from threading import Thread
+from time import sleep
 import pickle
 import sys
 
@@ -9,6 +10,7 @@ def message(conn1, conn2):
         while True:
             move = conn1.recv(1024)
             conn2.send(move)
+            sleep(0.2)
     except:
         conn1.close()
 
@@ -43,5 +45,6 @@ if __name__ == '__main__':
         else:
             print("Added to the pool")
             pool[secret] = player1
+        sleep(0.2)
 
 
