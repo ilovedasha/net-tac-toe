@@ -3,9 +3,9 @@
 A version of [Ultimate tic-tac-toe](https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe) which you can play over a local network
 or over the internet using my server (forkbenders.xyz:31001).
 
-## Installation
+## Installation (Linux)
 
-Dependencies: `java`
+Dependencies: `java >= 1.8`, older versions may also work.
 
 ```bash
 git clone https://github.com/lyova-potyomkin/net-tac-toe.git
