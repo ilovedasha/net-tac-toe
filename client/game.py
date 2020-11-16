@@ -13,8 +13,8 @@ class Game(object):
         self.winner = 0
         self.turn = 1
         self.loading = True
-        self.host = environ.get('HOST', 'forkbenders.xyz')
-        self.port = int(environ.get('PORT', 31001))
+        self.host = environ['HOST']
+        self.port = int(environ['PORT'])
 
     def connect(self):
         secret = Game.getSecret()
@@ -38,13 +38,13 @@ class Game(object):
             self.client.close()
 
     @staticmethod
-    def getSecret(minlen=16):
+    def getSecret(secretLen=16):
         secret = environ.get("SECRET", None)
         if secret is None:
-            secret = ''.join(choice(letters) for _ in range(minlen))
+            secret = ''.join(choice(letters) for _ in range(secretLen))
         else:
-            error = "Secret has to be at least " + str(minlen) + " symbols!"
-            assert len(secret) >= minlen, error
+            error = "Secret has to be exactly " + str(secretLen) + " symbols!"
+            assert len(secret) == secretLen, error
         return secret
 
     def play(self, i, j):

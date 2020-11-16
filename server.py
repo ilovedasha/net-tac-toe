@@ -2,7 +2,6 @@
 from socket import socket
 from threading import Thread
 from time import sleep
-import pickle
 import sys
 
 def message(conn1, conn2):
@@ -33,6 +32,9 @@ if __name__ == '__main__':
         print('Connection from:', str(addr1))
         secret = player1.recv(1024).decode()
         print('Secret:', secret)
+        if len(secret) != 16:
+            print('Invalid secret format')
+            continue
         if secret in pool:
             print("Found a match")
             player2 = pool.pop(secret)

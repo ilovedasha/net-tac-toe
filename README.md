@@ -1,16 +1,17 @@
 # Ultimate tic-tac-toe over the net
 
 A version of [Ultimate tic-tac-toe](https://en.wikipedia.org/wiki/Ultimate_tic-tac-toe) which you can play over a local network
-or over the internet using my server (forkbenders.xyz:31001).
+or over the internet using my server (redboot.xyz:31001).
 
-## Installation (Linux)
+## Installation (Linux/macOS)
 
-Dependencies: `java >= 1.8`, older versions may also work.
+Dependencies: Java 8 (exaclty 8).
+
+If you are running X11 display server (like most linux distros do), you may use dockerized version of the app, located in `docker/` folder.
 
 ```bash
 git clone https://github.com/lyova-potyomkin/net-tac-toe.git
 cd net-tac-toe
-./install.sh              # this downloads processing-py.jar
 ```
 
 ## Usage
@@ -21,15 +22,15 @@ This requires both clients and the server to be on the same *local* network.
 
 1. Setup the server with `./server.py [host] [port]`. 
    Default config is 0.0.0.0:31001.
-2. Connect the first client with `./net-tac-toe.sh host port`.
+2. Connect the first client with `./client.sh host port`.
    This will output the secret (a 16-byte string).
-3. Connect the second client with `SECRET=<secret> ./net-tac-toe.sh host port`.
+3. Connect the second client with `SECRET=<secret> ./client.sh host port`.
 
-**Using forkbenders.xyz**
+**Using redboot.xyz**
 
-0. Server is already running at forkbenders.xyz:31001
-1. Connect the first client with `./net-tac-toe.sh`
-2. Connect the second client with `SECRET=<secret> ./net-tac-toe.sh`
+0. Server is already running at redboot.xyz:31001
+1. Connect the first client with `./client.sh`
+2. Connect the second client with `SECRET=<secret> ./client.sh`
 
 Circle in the bottom-left corner denotes the color of your player.
 
