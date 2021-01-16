@@ -8,7 +8,7 @@ def setup():
     size(405, 445)
     textAlign(CENTER, CENTER)
     textSize(30)
-    
+
 def draw():
     background(255)
     if game.loading:
@@ -17,20 +17,20 @@ def draw():
         if frameCount > 1:
             game.connect()
     else:
-        if not game.winner: 
+        if not game.winner:
             game.board.showActive()
         game.board.show()
         grid()
         bottom()
-    
+
 def mousePressed():
-    if game.loading or game.turn != game.player: 
+    if game.loading or game.turn != game.player:
         return
     i, j = mouseY, mouseX
     if i > 405: return
     i, j = i//45, j//45
     game.play(i, j)
-    
+
 def grid():
     strokeWeight(3)
     line(135, 0, 135, 405)
@@ -38,7 +38,7 @@ def grid():
     line(0, 135, 405, 135)
     line(0, 270, 405, 270)
     strokeWeight(1)
-    
+
 def bottom():
     myFill(game.player, 153)
     ellipse(30, 425, 30, 30)

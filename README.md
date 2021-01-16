@@ -10,7 +10,7 @@ Dependencies: Java 8 (exaclty 8).
 If you are running X11 display server (like most linux distros do), you may use dockerized version of the app, located in `docker/` folder.
 
 ```bash
-git clone https://github.com/lyova-potyomkin/net-tac-toe.git
+git clone https://github.com/ly0va/net-tac-toe.git
 cd net-tac-toe
 ```
 
@@ -20,7 +20,7 @@ cd net-tac-toe
 
 This requires both clients and the server to be on the same *local* network.
 
-1. Setup the server with `./server.py [host] [port]`. 
+1. Setup the server with `./server.py [host] [port]`.
    Default config is 0.0.0.0:31001.
 2. Connect the first client with `./client.sh host port`.
    This will output the secret (a 16-byte string).
